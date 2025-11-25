@@ -1,10 +1,11 @@
 package main
 
 import (
-	"articles-service/internal"
 	"context"
 	"log"
 	"os"
+
+	"articles-service/internal"
 )
 
 func main() {

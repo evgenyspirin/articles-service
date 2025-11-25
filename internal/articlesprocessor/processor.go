@@ -65,14 +65,14 @@ func (p *ArticlesProcessor) runPipeline(ctx context.Context, g *errgroup.Group) 
 	}
 	p.out <- firstPage.Data
 
-	p.RunArticlesConsumer(ctx, g)
+	p.runArticlesConsumer(ctx, g)
 	p.runArticlesFetcherPool(ctx, g)
 	p.sendPagesToProcess(firstPage.TotalPages, g)
 
 	return nil
 }
 
-func (p *ArticlesProcessor) RunArticlesConsumer(ctx context.Context, g *errgroup.Group) {
+func (p *ArticlesProcessor) runArticlesConsumer(ctx context.Context, g *errgroup.Group) {
 	p.logger.Info("starting ArticlesConsumer worker gracefully stopped")
 
 	g.Go(func() error {
